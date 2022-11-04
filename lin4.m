@@ -1,6 +1,6 @@
-theta_unscaled = [1 2 3 4];
+theta_unscaled = [2 3 4 5];
 theta = theta_unscaled ./ norm(theta_unscaled)
-refpt = [4 3 2 1]; % ref point * 20
+refpt = [1 1 1 1]; % ref point * 10
 
 g = @(x,y,z,w) cos(y.*x) - sin(z).*w;
 
@@ -15,7 +15,7 @@ thetas = sym(theta_unscaled);
 thetas = thetas ./ norm(thetas);
 d = 4
 for i=1:d
-  l{i} = sym(refpt(i))/20 + t*thetas(i);
+  l{i} = sym(refpt(i))/10 + t*thetas(i);
 end
 g(l{1},l{2},l{3},l{4})
 exact = int(g(l{1},l{2},l{3},l{4}), t, [0 1])
@@ -27,12 +27,12 @@ for Nidx = 1:length(Nset)
   N = Nset(Nidx);
   for Kidx = 1:length(Kset)
     K = Kset(Kidx);
-    avg_over = 100;
+    avg_over = 50;
     ss = linspace(0, 1, K);
-    Lx = refpt(1)/20 + ss * theta(1);
-    Ly = refpt(2)/20 + ss * theta(2);
-    Lz = refpt(3)/20 + ss * theta(3);
-    Lw = refpt(4)/20 + ss * theta(4);
+    Lx = refpt(1)/10 + ss * theta(1);
+    Ly = refpt(2)/10 + ss * theta(2);
+    Lz = refpt(3)/10 + ss * theta(3);
+    Lw = refpt(4)/10 + ss * theta(4);
 
     %% trapezoidal rule weights
     trw = ones(1, K);
@@ -65,5 +65,5 @@ for Nidx = 1:length(Nset)
     disp([N K mean(err1) mean(err2) std(err2) tim])
     data{Kidx}(Nidx, :) = [N K mean(err1) mean(err2) std(err2) tim];
   end
-  save(sprintf('data_d4_upto_N%08d', N), 'data')
+  save(sprintf('data_d4new_upto_N%08d', N), 'data')
 end

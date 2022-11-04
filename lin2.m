@@ -29,7 +29,7 @@ for Nidx = 1:length(Nset)
   N = Nset(Nidx);
   for Kidx = 1:length(Kset)
     K = Kset(Kidx);
-    avg_over = 100;
+    avg_over = 50;
     ss = linspace(0, 1, K);
 
     Lx = refpt(1)/10 + ss * theta(1);

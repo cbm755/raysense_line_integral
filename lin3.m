@@ -1,6 +1,6 @@
-theta_unscaled = [1 2 3];
+theta_unscaled = [2 3 4];
 theta = theta_unscaled ./ norm(theta_unscaled)
-refpt = [4 1 2]; % ref point * 20
+refpt = [1 1 1]; % ref point * 10
 
 g = @(x,y,z) x.^3 + cos(y) - sin(z);
 g = @(x,y,z) cos(y.*x) - sin(z);
@@ -16,9 +16,9 @@ end
 syms t
 thetas = sym(theta_unscaled);
 thetas = thetas ./ norm(thetas);
-lx = sym(refpt(1))/20 + t*thetas(1);
-ly = sym(refpt(2))/20 + t*thetas(2);
-lz = sym(refpt(3))/20 + t*thetas(3);
+lx = sym(refpt(1))/10 + t*thetas(1);
+ly = sym(refpt(2))/10 + t*thetas(2);
+lz = sym(refpt(3))/10 + t*thetas(3);
 g(lx,ly,lz)
 exact = int(g(lx,ly,lz), t, [0 1])
 exact = double(exact)
@@ -29,12 +29,12 @@ for Nidx = 1:length(Nset)
   N = Nset(Nidx);
   for Kidx = 1:length(Kset)
     K = Kset(Kidx);
-    avg_over = 100;
+    avg_over = 50;
     ss = linspace(0, 1, K);
 
-    Lx = refpt(1)/20 + ss * theta(1);
-    Ly = refpt(2)/20 + ss * theta(2);
-    Lz = refpt(3)/20 + ss * theta(3);
+    Lx = refpt(1)/10 + ss * theta(1);
+    Ly = refpt(2)/10 + ss * theta(2);
+    Lz = refpt(3)/10 + ss * theta(3);
 
     err1 = [];
     err2 = [];
@@ -79,5 +79,5 @@ for Nidx = 1:length(Nset)
     disp([N K mean(err1) mean(err2) std(err2) tim])
     data{Kidx}(Nidx, :) = [N K mean(err1) mean(err2) std(err2) tim];
   end
-  save(sprintf('data_upto_N%08d', N), 'data')
+  save(sprintf('data_d3new_upto_N%08d', N), 'data')
 end
