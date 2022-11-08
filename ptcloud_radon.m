@@ -143,6 +143,7 @@ for theta_idx = 1:length(theta_set)
     end
   end
   if plots && theta_idx == 5
+    disp('paused before saving debugging figure')
     pause
     print(['example_cp_M' num2str(Mbins) '.png'], '-dpng')
   end

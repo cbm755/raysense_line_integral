@@ -9,8 +9,9 @@ if is_octave()
   %pkg load symbolic
 end
 
-% if false, use the existing cloud, else make new one
-new_cloud = true
+% new cloud or load saved one
+new_cloud = false
+load sav_92441_M101_K64_dt1
 
 if new_cloud
   N = 30000
@@ -34,6 +35,9 @@ if new_cloud
   N = length(x)
 
   uniq = randi(99999);
+else
+  x = cloud(1,:);
+  y = cloud(1,:);
 end
 
 
@@ -85,8 +89,7 @@ pause
 
 [R1, R2] = ptcloud_radon(cloud, K, theta_set, Mbins, g);
 
-
-save(['sav_' base], 'cloud', 'R1', 'R2', 'N', 'theta_set', 'Mbins', 'K', 'g')
+save(['sav_' base], 'cloud', 'R1', 'R2', 'N', 'theta_set', 'Mbins', 'K', 'g', 'rho', 'uniq')
 
 figure(4); clf;
 pcolor(R1)
