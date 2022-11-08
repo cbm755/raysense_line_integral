@@ -26,7 +26,7 @@ if new_cloud
   % rho = @(x,y) rho1(x,y) .* (abs(x) <= 0.5) .* (abs(y) <= 0.5) + ...
   %       0.5*(abs(y) > 0.5 | abs(x) > 0.5);
   % 				%0.5*(abs(x) > 0.5) .* ...
-  rho = @(x,y) -3*x.*exp(-9*(x.^2 +y.^2)) + 0.5
+  rho = @(x,y) -3*x.*exp(-9*(x.^2 + y.^2)) + 0.5
   I = z < rho(x, y);
   x = x(I);
   y = y(I);
