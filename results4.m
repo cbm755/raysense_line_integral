@@ -6,17 +6,14 @@ for d=2:5
   N = 2^24
   N2 = 2^23
   if d == 2
-    load(sprintf('data_d2new_upto_N%08d.mat', N))
+    load(sprintf('data/data_d2new_upto_N%08d.mat', N))
     %load('nonunif_d2_upto_N16776417')
   elseif d == 3
-    %load(sprintf('data_upto_N%08d.mat', N))
-    load(sprintf('data_d3new_upto_N%08d.mat', N))
+    load(sprintf('data/data_d3new_upto_N%08d.mat', N))
   elseif d == 4
-    %load(sprintf('data_d4_upto_N%08d.mat', N))
-    load(sprintf('data_d4new_upto_N%08d.mat', N))
+    load(sprintf('data/data_d4new_upto_N%08d.mat', N))
   elseif d == 5
-    %load(sprintf('data_d4_upto_N%08d.mat', N))
-    load(sprintf('data_d5new_upto_N%08d.mat', N2))
+    load(sprintf('data/data_d5new_upto_N%08d.mat', N2))
   else
     error('no data')
   end
